@@ -44,7 +44,8 @@
         .hero {
             position: relative;
             width: 100%;
-            height: auto;
+            height: 56.25vw; /* 16:9 aspect ratio */
+            max-height: 100vh;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -55,10 +56,12 @@
 
         .hero-video {
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
             width: 100%;
-            height: auto;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
             z-index: -2;
         }
 
@@ -683,6 +686,145 @@
             font-style: normal;
             font-weight: 700;
         }
+        
+        /* セミナー申し込みセクション */
+        .seminar-apply-section {
+            padding: 40px 20px;
+        }
+        
+        .seminar-main-apply-btn {
+            display: inline-block;
+            background: linear-gradient(45deg, rgb(248, 171, 48) 0%, rgb(229, 81, 189) 100%);
+            color: white;
+            padding: 18px 50px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(248, 171, 48, 0.3);
+        }
+        
+        .seminar-main-apply-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(248, 171, 48, 0.5);
+            opacity: 0.9;
+        }
+
+        /* セミナーチラシポップアップモーダル */
+        .seminar-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .seminar-modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .modal-header {
+            padding: 30px 30px 20px;
+            border-bottom: 2px solid #f0f0f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            color: #999;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .modal-close:hover {
+            background: #f0f0f0;
+            color: #333;
+            transform: rotate(90deg);
+        }
+        
+        .modal-body {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .modal-flyer-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding-top: 20px;
+        }
+        
+        .modal-apply-btn {
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, rgb(248, 171, 48) 0%, rgb(229, 81, 189) 100%);
+            color: white;
+            border: none;
+        }
+        
+        .modal-apply-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(229, 81, 189, 0.3);
+        }
 
         /* 業務内容セクション */
         .about-works {
@@ -942,6 +1084,32 @@
             padding: 40px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             text-align: left;
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+        
+        .message-photo-wrapper {
+            flex-shrink: 0;
+            width: 200px;
+        }
+        
+        .message-photo {
+            width: 100%;
+            height: 250px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 14px;
+            border: 2px solid #e0e0e0;
+            object-fit: cover;
+        }
+        
+        .message-text-wrapper {
+            flex: 1;
         }
 
         .message-header {
@@ -1345,6 +1513,50 @@
         }
 
         @media (max-width: 768px) {
+            .message-card {
+                flex-direction: column;
+                padding: 30px 20px;
+            }
+            
+            .message-photo-wrapper {
+                width: 100%;
+                max-width: 200px;
+                margin: 0 auto;
+            }
+            
+            .message-text-wrapper {
+                width: 100%;
+            }
+            
+            .modal-content {
+                max-width: 95%;
+                margin: 10px;
+            }
+            
+            .modal-header {
+                padding: 20px;
+            }
+            
+            .modal-title {
+                font-size: 18px;
+            }
+            
+            .modal-body {
+                padding: 20px;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .modal-apply-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        @media (max-width: 768px) {
             .caveat-title {
                 font-size: 2.5rem;
             }
@@ -1516,8 +1728,8 @@
             }
 
             .hero {
-                height: auto;
-                min-height: 56.25vw;
+                height: 56.25vw;
+                max-height: none;
             }
 
             .message-section-title {
@@ -1553,8 +1765,8 @@
 
         @media (max-width: 480px) {
             .hero {
-                height: auto;
-                min-height: 56.25vw;
+                height: 56.25vw;
+                max-height: none;
             }
             
             .hero h1 {
@@ -1650,13 +1862,13 @@
         </div>
         <ul class="nav-list">
             <li><a href="#home" class="nav-link"><span class="nav-icon">🏠</span>TOP</a></li>
-            <li><a href="#aboutservice" class="nav-link"><span class="nav-icon">💼</span>About Service</a></li>
-            <li><a href="#accessmap" class="nav-link"><span class="nav-icon">📍</span>Access Map</a></li>
-            <li><a href="#seminars" class="nav-link"><span class="nav-icon">📚</span>Seminars</a></li>
             <li><a href="#aboutworks" class="nav-link"><span class="nav-icon">⚡</span>About Works</a></li>
+            <li><a href="#seminars" class="nav-link"><span class="nav-icon">📚</span>Seminars</a></li>
             <li><a href="#uservoice" class="nav-link"><span class="nav-icon">💬</span>User Voice</a></li>
-            <li><a href="#contact" class="nav-link"><span class="nav-icon">📞</span>Contact</a></li>
+            <li><a href="#accessmap" class="nav-link"><span class="nav-icon">📍</span>Access Map</a></li>
+            <li><a href="#aboutservice" class="nav-link"><span class="nav-icon">💼</span>About Service</a></li>
             <li><a href="#message" class="nav-link"><span class="nav-icon">💌</span>Message</a></li>
+            <li><a href="#contact" class="nav-link"><span class="nav-icon">📞</span>Contact</a></li>
         </ul>
     </nav>
 
@@ -1679,85 +1891,69 @@
             
         </section>
 
-        <!-- About Serviceセクション -->
-        <section id="aboutservice" class="about-service">
-            
+<section id="aboutworks" class="about-works">
             <!-- タイトル -->
             <div class="container">
-                <h1 class="about-service-title fade-in">About Service</h1>
+                <h1 class="about-works-title fade-in">About Works</h1>
             </div>
             
             <!-- コンテンツ1 -->
-            <div class="about-service-container fade-in">
-                <div class="about-service-content-wrapper">
-                    <div class="about-service-text">
-                        <h2 class="about-service-badge">サービスについて</h2>
-                        <p class="about-service-description">
-                            「<span class="emphasis">謙虚さを忘れず、そして、時にはうぬぼれるくらい自信を持ってちょうど良い。</span>」そんなメッセージを込めて、就労支援センターHAC（ハック）という名前を付けました。<br><br>
-                            ロゴマークは、「謙虚」と「うぬぼれ」が、天称の上でちょうど釣り合っているところを表しています。<br><br>
-                            HとCのバランスを取りながら、人生を豊かに過ごせるようお手伝いさせてください。働くのは能力ではなく<span class="emphasis">「人」</span>です。
-                        </p>
+            <div class="works-container fade-in">
+                <div class="works-content-wrapper">
+                    <div class="works-text">
+                        <div class="works-number">1</div>
+                        <h3 class="works-subtitle">就職マッチング面談：<br>得意に気づく⇒合う仕事・職場がわかる</h3>
+                        <p class="works-description">自分の強みに気づいてますか？</p>
+                        <p class="works-description">なんにも得意なことがないんです。⇒<span class="emphasis">そんなことありません。一緒にあなたの強みを見つけましょう。</span></p>
+                        <p class="works-description">得意なこと・長所は作るものじゃない。気づくものだ。</p>
+                        <p class="works-description">得意なことに気づいたとき、あなたにぴったりな仕事が見つかります。</p>
                     </div>
-                    <div class="about-service-image-wrapper">
-                        <div class="about-service-image-bg"></div>
-                        <img src="images/about1.png" class="about-service-image" alt="サービスイメージ1">
+                    <div class="works-image-wrapper">
+                        <div class="works-image-bg"></div>
+                        <img src="images/skill.jpg" class="works-image" alt="スキルマッチング">
                     </div>
                 </div>
             </div>
             
             <!-- コンテンツ2 -->
-            <div class="about-service-container-reverse fade-in">
-                <div class="about-service-content-wrapper">
-                    <div class="about-service-text-reverse">
-                        <p class="about-service-description">
-                            私たちは、一人ひとりが持つ個性と可能性を大切にし、専門的な支援であなたのステップアップを全力でサポートします。<br><br>
-                            <span class="emphasis">「あなたと働きたい」</span>を一緒に目指しましょう！<br><br>
-                            就労継続支援事業所からの次のステップを踏み出したい方、個人で本格的な就労支援をお探しの方、まずはお気軽にご相談ください。
-                        </p>
+            <div class="works-container-reverse fade-in">
+                <div class="works-content-wrapper">
+                    <div class="works-text-reverse">
+                        <p class="works-description">胸を張って自分の強みが言えますか？</p>
+                        <p class="works-description">これ以上頑張れなくなる前に、まずは自分の強みに気づこう。</p>
+                        <p class="works-description">得意なことを頑張ってませんか？<span class="emphasis">得意なことは頑張らなくてもできることです。</span></p>
+                        <p class="works-description">できないものはできない。できることはできる。できることを隠してませんか？</p>
+                        <p class="works-description">同じ失敗を繰り返したとき、「またやっちゃったな」って笑えますか。</p>
+                        <p class="works-description">長所がとまらなくなる自己肯定感アップ術。</p>
                     </div>
-                    <div class="about-service-image-wrapper" style="order: -1;">
-                        <div class="about-service-image-bg-reverse"></div>
-                        <img src="images/about2.png" class="about-service-image" alt="サービスイメージ2">
+                    <div class="works-image-wrapper" style="order: -1;">
+                        <div class="works-image-bg-reverse"></div>
+                        <img src="images/about_works.png" class="works-image" alt="自己肯定感アップ">
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- アクセスマップセクション (access map) -->
-        <section id="accessmap" class="section access-map">
             
-            <div class="container">
-                <div class="section-wrapper">
-                    <h1 class="access-map-title fade-in">Access Map</h1>
-                </div>
-                <div class="access-map-container fade-in">
-                    <div class="access-map-card">
-                        <div class="access-info-section">
-                            <h3>就労支援センターHAC</h3>
-                            <div class="access-details">
-                                <p>〒８９２－０８３８<br>
-                                鹿児島市新屋敷町１６番　公社ビル４２０号</p>
-                                <p>TEL：０９９－２９８－９６８９</p>
-                            </div>
-                        </div>
-                        
-                        <div class="google-map-section">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3398.848249895477!2d130.554604!3d31.583209!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x353e60ad3eaaaaab%3A0x4d7b0760d7181b6c!2z44CSODkyLTA4Mzgg6bm_5YWQ5bO255yM6bm_5YWQ5bO25biC5paw5bGL5pW355S677yR77yW4oiS77yR77yW!5e0!3m2!1sja!2sjp!4v1753711220987!5m2!1sja!2sjp" 
-                                    width="100%" 
-                                    height="300" 
-                                    style="border:0; border-radius: 10px;" 
-                                    allowfullscreen="" 
-                                    loading="lazy" 
-                                    referrerpolicy="no-referrer-when-downgrade">
-                            </iframe>
-                        </div>
+            <!-- コンテンツ3 -->
+            <div class="works-container fade-in">
+                <div class="works-content-wrapper">
+                    <div class="works-text">
+                        <div class="works-number">2</div>
+                        <h3 class="works-subtitle">変化と評価で自信がつく。<br>うぬぼれプロジェクト</h3>
+                        <p class="works-description"><span class="emphasis">うぬぼれるくらいで丁度良い。</span></p>
+                        <p class="works-description">新しいことを学び、日々の成長を実感するプログラムです。</p>
+                        <p class="works-description">できる自分に気づく。</p>
+                        <p class="works-description">誰にも見られない変化では自信はつかない。</p>
+                        <p class="works-description">面接のときだけ、できるアピールしてませんか？</p>
+                    </div>
+                    <div class="works-image-wrapper">
+                        <div class="works-image-bg"></div>
+                        <img src="images/about1.png" class="works-image" alt="うぬぼれプロジェクト">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- セミナー情報セクション -->
-        <section id="seminars" class="seminars-section">
+<section id="seminars" class="seminars-section">
             <div class="container">
                 <h1 class="seminars-title fade-in">Seminars</h1>
                 <p class="seminars-subtitle fade-in">利用者様のために定期的に開催している各種セミナー・イベント情報</p>
@@ -1780,13 +1976,13 @@
                             <div class="seminar-presenter-info">
                                 <span class="seminar-presenter">講師：前田剛（HACスタッフ）</span>
                             </div>
-                            <a href="https://forms.gle/BjvxksbC8xXWMRRz9" target="_blank" class="seminar-apply-btn">申し込む</a>
+                            <button class="seminar-apply-btn" data-seminar="september">詳細</button>
                         </div>
                         
                         <div class="seminar-card upcoming">
                             <div class="seminar-status-badge">開催予定</div>
                             <div class="seminar-date">2025年10月28日（火）13:00〜15:00</div>
-                            <h3 class="seminar-title-text">働くために必要なこと</h3>
+                            <h3 class="seminar-title-text">その訓練"己満足"で終わってない？</h3>
                             <p class="seminar-description">
                                 西原商会九州勤務の取違さんを講師にお迎えし、働くために必要なこと、西原商会の障害者採用の基準、西原商会で働いている障害者の業務内容についてお話しいただきます。
                             </p>
@@ -1795,11 +1991,20 @@
                                 <span class="seminar-capacity">定員：20名</span>
                             </div>
                             <div class="seminar-presenter-info">
-                                <span class="seminar-presenter">講師：取違さん（西原商会九州）</span>
+                                <span class="seminar-presenter">講師：取違智宏（西原商会九州：人事部）</span>
                             </div>
-                            <button class="seminar-apply-btn" disabled style="background: #ccc; cursor: not-allowed;">準備中</button>
+                            <button class="seminar-apply-btn" data-seminar="october">詳細</button>
                         </div>
                     </div>
+                </div>
+                
+                <!-- 申し込みボタン -->
+                <div class="seminar-apply-section fade-in" style="text-align: center; margin: 60px 0 40px;">
+                    <h3 style="font-size: 1.8rem; font-weight: 700; color: #333; margin-bottom: 20px;">セミナーのお申し込み</h3>
+                    <p style="color: #666; margin-bottom: 30px; font-size: 1.1rem;">「これから輝くあなたへの話」9月9日（火）開催</p>
+                    <a href="https://forms.gle/BjvxksbC8xXWMRRz9" target="_blank" class="seminar-main-apply-btn">
+                        セミナーに申し込む
+                    </a>
                 </div>
                 
                 <!-- 過去のセミナー -->
@@ -1884,71 +2089,7 @@
             </div>
         </section>
 
-        <!-- About Worksセクション -->
-        <section id="aboutworks" class="about-works">
-            <!-- タイトル -->
-            <div class="container">
-                <h1 class="about-works-title fade-in">About Works</h1>
-            </div>
-            
-            <!-- コンテンツ1 -->
-            <div class="works-container fade-in">
-                <div class="works-content-wrapper">
-                    <div class="works-text">
-                        <div class="works-number">1</div>
-                        <h3 class="works-subtitle">就職マッチング面談：<br>得意に気づく⇒合う仕事・職場がわかる</h3>
-                        <p class="works-description">自分の強みに気づいてますか？</p>
-                        <p class="works-description">なんにも得意なことがないんです。⇒<span class="emphasis">そんなことありません。一緒にあなたの強みを見つけましょう。</span></p>
-                        <p class="works-description">得意なこと・長所は作るものじゃない。気づくものだ。</p>
-                        <p class="works-description">得意なことに気づいたとき、あなたにぴったりな仕事が見つかります。</p>
-                    </div>
-                    <div class="works-image-wrapper">
-                        <div class="works-image-bg"></div>
-                        <img src="images/skill.jpg" class="works-image" alt="スキルマッチング">
-                    </div>
-                </div>
-            </div>
-            
-            <!-- コンテンツ2 -->
-            <div class="works-container-reverse fade-in">
-                <div class="works-content-wrapper">
-                    <div class="works-text-reverse">
-                        <p class="works-description">胸を張って自分の強みが言えますか？</p>
-                        <p class="works-description">これ以上頑張れなくなる前に、まずは自分の強みに気づこう。</p>
-                        <p class="works-description">得意なことを頑張ってませんか？<span class="emphasis">得意なことは頑張らなくてもできることです。</span></p>
-                        <p class="works-description">できないものはできない。できることはできる。できることを隠してませんか？</p>
-                        <p class="works-description">同じ失敗を繰り返したとき、「またやっちゃったな」って笑えますか。</p>
-                        <p class="works-description">長所がとまらなくなる自己肯定感アップ術。</p>
-                    </div>
-                    <div class="works-image-wrapper" style="order: -1;">
-                        <div class="works-image-bg-reverse"></div>
-                        <img src="images/about_works.png" class="works-image" alt="自己肯定感アップ">
-                    </div>
-                </div>
-            </div>
-            
-            <!-- コンテンツ3 -->
-            <div class="works-container fade-in">
-                <div class="works-content-wrapper">
-                    <div class="works-text">
-                        <div class="works-number">2</div>
-                        <h3 class="works-subtitle">変化と評価で自信がつく。<br>うぬぼれプロジェクト</h3>
-                        <p class="works-description"><span class="emphasis">うぬぼれるくらいで丁度良い。</span></p>
-                        <p class="works-description">新しいことを学び、日々の成長を実感するプログラムです。</p>
-                        <p class="works-description">できる自分に気づく。</p>
-                        <p class="works-description">誰にも見られない変化では自信はつかない。</p>
-                        <p class="works-description">面接のときだけ、できるアピールしてませんか？</p>
-                    </div>
-                    <div class="works-image-wrapper">
-                        <div class="works-image-bg"></div>
-                        <img src="images/about1.png" class="works-image" alt="うぬぼれプロジェクト">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 利用者の声セクション (user voice) -->
-        <section id="uservoice" class="user-voice">
+<section id="uservoice" class="user-voice">
             <!-- タイトル -->
             <div class="container">
                 <h1 class="user-voice-title fade-in">User Voice</h1>
@@ -1990,8 +2131,128 @@
             </div>
         </section>
 
-        <!-- お問い合わせセクション (contact) -->
-        <section id="contact" class="contact">
+<section id="accessmap" class="section access-map">
+            
+            <div class="container">
+                <div class="section-wrapper">
+                    <h1 class="access-map-title fade-in">Access Map</h1>
+                </div>
+                <div class="access-map-container fade-in">
+                    <div class="access-map-card">
+                        <div class="access-info-section">
+                            <h3>就労支援センターHAC</h3>
+                            <div class="access-details">
+                                <p>〒８９２－０８３８<br>
+                                鹿児島市新屋敷町１６番　公社ビル４２０号</p>
+                                <p>TEL：０９９－２９８－９６８９</p>
+                            </div>
+                        </div>
+                        
+                        <div class="google-map-section">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3398.848249895477!2d130.554604!3d31.583209!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x353e60ad3eaaaaab%3A0x4d7b0760d7181b6c!2z44CSODkyLTA4Mzgg6bm_5YWQ5bO255yM6bm_5YWQ5bO25biC5paw5bGL5pW355S677yR77yW4oiS77yR77yW!5e0!3m2!1sja!2sjp!4v1753711220987!5m2!1sja!2sjp" 
+                                    width="100%" 
+                                    height="300" 
+                                    style="border:0; border-radius: 10px;" 
+                                    allowfullscreen="" 
+                                    loading="lazy" 
+                                    referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section id="aboutservice" class="about-service">
+            
+            <!-- タイトル -->
+            <div class="container">
+                <h1 class="about-service-title fade-in">About Service</h1>
+            </div>
+            
+            <!-- コンテンツ1 -->
+            <div class="about-service-container fade-in">
+                <div class="about-service-content-wrapper">
+                    <div class="about-service-text">
+                        <h2 class="about-service-badge">サービスについて</h2>
+                        <p class="about-service-description">
+                            「<span class="emphasis">謙虚さを忘れず、そして、時にはうぬぼれるくらい自信を持ってちょうど良い。</span>」そんなメッセージを込めて、就労支援センターHAC（ハック）という名前を付けました。<br><br>
+                            ロゴマークは、「謙虚」と「うぬぼれ」が、天称の上でちょうど釣り合っているところを表しています。<br><br>
+                            HとCのバランスを取りながら、人生を豊かに過ごせるようお手伝いさせてください。働くのは能力ではなく<span class="emphasis">「人」</span>です。
+                        </p>
+                    </div>
+                    <div class="about-service-image-wrapper">
+                        <div class="about-service-image-bg"></div>
+                        <img src="images/about1.png" class="about-service-image" alt="サービスイメージ1">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- コンテンツ2 -->
+            <div class="about-service-container-reverse fade-in">
+                <div class="about-service-content-wrapper">
+                    <div class="about-service-text-reverse">
+                        <p class="about-service-description">
+                            私たちは、一人ひとりが持つ個性と可能性を大切にし、専門的な支援であなたのステップアップを全力でサポートします。<br><br>
+                            <span class="emphasis">「あなたと働きたい」</span>を一緒に目指しましょう！<br><br>
+                            就労継続支援事業所からの次のステップを踏み出したい方、個人で本格的な就労支援をお探しの方、まずはお気軽にご相談ください。
+                        </p>
+                    </div>
+                    <div class="about-service-image-wrapper" style="order: -1;">
+                        <div class="about-service-image-bg-reverse"></div>
+                        <img src="images/about2.png" class="about-service-image" alt="サービスイメージ2">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section id="message" class="message-section">
+            <div class="container">
+                <!-- タイトル -->
+                <h1 class="message-section-title fade-in">Message</h1>
+                
+                <!-- メッセージカード -->
+                <div class="message-card-container fade-in">
+                    <div class="message-card">
+                        <!-- 代表者写真 -->
+                        <div class="message-photo-wrapper">
+                            <!-- 画像パスを設定すれば表示されます -->
+                            <!-- <img src="images/director.jpg" class="message-photo" alt="施設長"> -->
+                            <!-- プレースホルダー（画像がない場合） -->
+                            <div class="message-photo">
+                                代表者写真
+                            </div>
+                        </div>
+                        
+                        <!-- メッセージテキスト -->
+                        <div class="message-text-wrapper">
+                            <div class="message-header">
+                                <h3>施設長からのメッセージ</h3>
+                            </div>
+                            <div class="message-content">
+                                <p>
+                                    謙虚さを忘れず、そして、時にはうぬぼれるくらい自信を持ってちょうど良い。
+                                </p>
+                                <p>
+                                    私たちは、一人ひとりが持つ個性と可能性を大切にし、専門的な支援であなたのステップアップを全力でサポートします。
+                                </p>
+                                <p>
+                                    就労継続支援事業所からの次のステップを踏み出したい方、個人で本格的な就労支援をお探しの方、私たちと一緒にあなたの可能性を見つけていきませんか。
+                                </p>
+                                <p>
+                                    どんな小さなことでも、まずはお気軽にご相談ください。あなたらしい働き方を、一緒に見つけましょう。
+                                </p>
+                                <div class="message-signature">
+                                    <p><strong>就労支援センターHAC　施設長</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+<section id="contact" class="contact">
             
             <!-- タイトル -->
             <div class="container">
@@ -2035,55 +2296,21 @@
                     
                     <button type="submit" class="submit-btn">無料相談を申し込む</button>
                 </form>
-            </div>
-        </section>
-
-        <!-- メッセージセクション (message) -->
-        <section id="message" class="message-section">
-            <div class="container">
-                <!-- タイトル -->
-                <h1 class="message-section-title fade-in">Message</h1>
-                
-                <!-- メッセージカード -->
-                <div class="message-card-container fade-in">
-                    <div class="message-card">
-                        <div class="message-header">
-                            <h3>施設長からのメッセージ</h3>
-                        </div>
-                        <div class="message-content">
-                            <p>
-                                謙虚さを忘れず、そして、時にはうぬぼれるくらい自信を持ってちょうど良い。
-                            </p>
-                            <p>
-                                私たちは、一人ひとりが持つ個性と可能性を大切にし、専門的な支援であなたのステップアップを全力でサポートします。
-                            </p>
-                            <p>
-                                就労継続支援事業所からの次のステップを踏み出したい方、個人で本格的な就労支援をお探しの方、私たちと一緒にあなたの可能性を見つけていきませんか。
-                            </p>
-                            <p>
-                                どんな小さなことでも、まずはお気軽にご相談ください。あなたらしい働き方を、一緒に見つけましょう。
-                            </p>
-                            <div class="message-signature">
-                                <p><strong>就労支援センターHAC　施設長</strong></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
     </main>
 
     <!-- フッター -->
     <footer>
         <div class="footer-content">
-            <p>&copy; 2025 08LP - 就労支援専門サービス. All rights reserved.</p>
+            <p>「あなたと働きたい」を目指す、就労支援センターHAC</p>
             <p style="margin-top: 1rem; opacity: 0.8;">
-                専門的な就労支援で、あなたのステップアップを応援します
+                All rights reserved.
             </p>
         </div>
     </footer>
 
     <script>
+    document.addEventListener('DOMContentLoaded', function() {
         // スムーススクロール
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -2117,27 +2344,76 @@
             observer.observe(el);
         });
 
+        // セミナーチラシポップアップモーダルの処理
+        const seminarModal = document.getElementById('seminarModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalImage = document.getElementById('modalImage');
+        const modalApplyLink = document.getElementById('modalApplyLink');
+        
+        // セミナー情報
+        const seminarInfo = {
+            september: {
+                title: '2025年9月9日（火）「これから輝くあなたへの話」',
+                image: 'images/seminar_september.jpg',
+                applyUrl: 'https://forms.gle/BjvxksbC8xXWMRRz9'
+            },
+            october: {
+                title: '2025年10月28日（火）「その訓練"己満足"で終わってない？」',
+                image: 'images/seminar_october.jpg',
+                applyUrl: '#' // 申し込みフォームのURLが決まったら変更
+            }
+        };
+        
         // セミナー申し込みボタンの処理
         document.querySelectorAll('.seminar-apply-btn').forEach(button => {
-            // Google Formsのリンクがある場合はそのまま遷移させる
-            if (button.tagName === 'A' && button.href.includes('forms.gle')) {
-                return; // リンクの場合は何もしない（通常のリンク動作）
-            }
-            
             button.addEventListener('click', function(e) {
                 e.preventDefault();
-                const card = this.closest('.seminar-card');
-                const seminarTitle = card.querySelector('.seminar-title-text').textContent;
-                const seminarDate = card.querySelector('.seminar-date').textContent;
+                const seminarType = this.dataset.seminar;
                 
-                // 申し込みメッセージ表示
-                alert(`「${seminarTitle}」\n${seminarDate}\n\nこちらのセミナーへのお申し込みを受け付けました。\n詳細については追ってご連絡いたします。`);
-                
-                // ボタンのテキストを変更
-                this.textContent = '申し込み済み';
-                this.style.background = 'linear-gradient(to right, #95a5a6 0%, #7f8c8d 100%)';
-                this.disabled = true;
+                if (seminarType && seminarInfo[seminarType]) {
+                    const info = seminarInfo[seminarType];
+                    
+                    // モーダルに情報を設定
+                    modalTitle.textContent = info.title;
+                    modalImage.src = info.image;
+                    modalApplyLink.href = info.applyUrl;
+                    
+                    // 9月の場合は申し込みボタンを有効、10月の場合は準備中に
+                    if (seminarType === 'september') {
+                        modalApplyLink.textContent = '申し込みフォームへ';
+                        modalApplyLink.style.background = 'linear-gradient(45deg, rgb(248, 171, 48) 0%, rgb(229, 81, 189) 100%)';
+                        modalApplyLink.style.pointerEvents = 'auto';
+                        modalApplyLink.style.cursor = 'pointer';
+                        modalApplyLink.removeAttribute('onclick');
+                    } else if (seminarType === 'october') {
+                        modalApplyLink.textContent = '準備中';
+                        modalApplyLink.style.background = '#ccc';
+                        modalApplyLink.style.pointerEvents = 'none';
+                        modalApplyLink.style.cursor = 'not-allowed';
+                        modalApplyLink.href = '#';
+                        modalApplyLink.onclick = function(e) { e.preventDefault(); };
+                    }
+                    
+                    // モーダルを表示
+                    seminarModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
             });
+        });
+        
+        // モーダルを閉じる
+        modalClose.addEventListener('click', function() {
+            seminarModal.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        
+        // モーダル外クリックで閉じる
+        seminarModal.addEventListener('click', function(e) {
+            if (e.target === seminarModal) {
+                seminarModal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
         });
 
         // フォーム送信処理
@@ -2256,6 +2532,23 @@
                 behavior: 'smooth'
             });
         });
+    }); // DOMContentLoaded end
     </script>
+
+    <!-- セミナーチラシポップアップモーダル -->
+    <div id="seminarModal" class="seminar-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">セミナー詳細</h3>
+                <button class="modal-close" id="modalClose">&times;</button>
+            </div>
+            <div class="modal-body">
+                <img id="modalImage" src="" alt="セミナーチラシ" class="modal-flyer-image">
+                <div class="modal-actions">
+                    <a id="modalApplyLink" href="#" target="_blank" class="modal-apply-btn">申し込みフォームへ</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
