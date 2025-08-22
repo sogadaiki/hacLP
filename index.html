@@ -1362,6 +1362,43 @@
             padding: 30px 25px 20px 25px;
             border-bottom: 2px solid rgba(248, 171, 48, 0.2);
             background: linear-gradient(135deg, rgba(248, 171, 48, 0.1) 0%, rgba(229, 81, 189, 0.1) 100%);
+            position: relative;
+        }
+        
+        .nav-close-btn {
+            background: none;
+            border: none;
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            right: 25px;
+            top: 30px;
+            cursor: pointer;
+            padding: 0;
+            z-index: 10;
+        }
+        
+        .nav-close-btn span {
+            position: absolute;
+            width: 24px;
+            height: 2px;
+            background: white;
+            left: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-close-btn span:first-child {
+            transform: rotate(45deg);
+            top: 14px;
+        }
+        
+        .nav-close-btn span:last-child {
+            transform: rotate(-45deg);
+            top: 14px;
+        }
+        
+        .nav-close-btn:hover span {
+            background: rgb(248, 171, 48);
         }
 
         .nav-menu-header h3 {
@@ -1859,6 +1896,10 @@
     <nav class="nav-menu" id="navMenu">
         <div class="nav-menu-header">
             <h3>NAVIGATION</h3>
+            <button class="nav-close-btn" id="navCloseBtn">
+                <span></span>
+                <span></span>
+            </button>
         </div>
         <ul class="nav-list">
             <li><a href="#home" class="nav-link"><span class="nav-icon">🏠</span>TOP</a></li>
@@ -1982,7 +2023,7 @@
                         <div class="seminar-card upcoming">
                             <div class="seminar-status-badge">開催予定</div>
                             <div class="seminar-date">2025年10月28日（火）13:00〜15:00</div>
-                            <h3 class="seminar-title-text">その訓練"己満足"で終わってない？</h3>
+                            <h3 class="seminar-title-text">その訓練"自己満足"で終わってない？</h3>
                             <p class="seminar-description">
                                 西原商会九州勤務の取違さんを講師にお迎えし、働くために必要なこと、西原商会の障害者採用の基準、西原商会で働いている障害者の業務内容についてお話しいただきます。
                             </p>
@@ -2497,6 +2538,7 @@
         const hamburgerMenu = document.getElementById('hamburgerMenu');
         const navMenu = document.getElementById('navMenu');
         const navOverlay = document.getElementById('navOverlay');
+        const navCloseBtn = document.getElementById('navCloseBtn');
         const navLinks = document.querySelectorAll('.nav-link');
 
         // メニューを開く
@@ -2516,6 +2558,9 @@
         }
 
 
+        // 閉じるボタンクリック
+        navCloseBtn.addEventListener('click', closeMenu);
+        
         // オーバーレイクリック
         navOverlay.addEventListener('click', closeMenu);
 
