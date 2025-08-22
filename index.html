@@ -2024,6 +2024,7 @@
                             <div class="seminar-presenter-info">
                                 <span class="seminar-presenter">講師：弓削遵子（社会保険労務士・FP）</span>
                             </div>
+                            <button class="seminar-apply-btn" data-seminar="july">詳細</button>
                             <div class="seminar-feedback popular-badge">
                                 🔥 定員を超える申し込みが殺到した人気セミナー
                             </div>
@@ -2353,6 +2354,11 @@
         
         // セミナー情報
         const seminarInfo = {
+            july: {
+                title: '2025年7月29日（火）「障害年金とこれからの暮らし」',
+                image: 'images/seminar_july.jpg',
+                applyUrl: '#' // 過去のセミナーのため
+            },
             september: {
                 title: '2025年9月9日（火）「これから輝くあなたへの話」',
                 image: 'images/seminar_september.jpg',
@@ -2379,14 +2385,19 @@
                     modalImage.src = info.image;
                     modalApplyLink.href = info.applyUrl;
                     
-                    // 9月の場合は申し込みボタンを有効、10月の場合は準備中に
-                    if (seminarType === 'september') {
+                    // セミナーごとにボタンの表示を切り替え
+                    if (seminarType === 'july') {
+                        // 7月は過去のセミナーなので申し込みボタンを非表示
+                        modalApplyLink.style.display = 'none';
+                    } else if (seminarType === 'september') {
+                        modalApplyLink.style.display = 'inline-block';
                         modalApplyLink.textContent = '申し込みフォームへ';
                         modalApplyLink.style.background = 'linear-gradient(45deg, rgb(248, 171, 48) 0%, rgb(229, 81, 189) 100%)';
                         modalApplyLink.style.pointerEvents = 'auto';
                         modalApplyLink.style.cursor = 'pointer';
                         modalApplyLink.removeAttribute('onclick');
                     } else if (seminarType === 'october') {
+                        modalApplyLink.style.display = 'inline-block';
                         modalApplyLink.textContent = '準備中';
                         modalApplyLink.style.background = '#ccc';
                         modalApplyLink.style.pointerEvents = 'none';
