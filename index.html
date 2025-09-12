@@ -852,26 +852,15 @@
             overflow: hidden;
         }
         
-        /* セクション番号のスタイル */
+        /* セクション番号のスタイル - 番号2と同じスタイルに統一 */
         .works-section-number {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(45deg, rgb(248, 171, 48) 0%, rgb(229, 81, 189) 100%);
-            border-radius: 50%;
-            color: white;
-            font-size: 48px;
-            font-weight: 900;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 30px auto 20px;
-            box-shadow: 0 10px 30px rgba(248, 171, 48, 0.3);
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            font-family: 'Caveat', cursive;
+            font-size: 120px;
+            font-weight: 700;
+            color: rgb(248, 171, 48);
+            line-height: 1;
+            margin: 20px auto;
+            text-align: center;
         }
         
         .about-works-title-new {
@@ -1314,6 +1303,80 @@
             font-size: 1.2rem;
         }
 
+        /* セミナー説明の大きな番号スタイル */
+        .seminar-number-large {
+            display: inline-block;
+            font-size: 140px;
+            font-weight: 900;
+            color: rgb(248, 171, 48);
+            line-height: 0.7;
+            margin-right: 30px;
+            vertical-align: top;
+            min-width: 110px;
+            text-align: left;
+            font-family: 'Noto Sans JP', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .seminar-description {
+            position: relative;
+            padding: 20px 0;
+        }
+        
+        .seminar-content-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 35px;
+            position: relative;
+        }
+        
+        .seminar-content-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .seminar-content-text {
+            flex: 1;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #333;
+            padding-top: 35px;
+        }
+        
+        /* レスポンシブデザイン用の調整 */
+        @media (max-width: 768px) {
+            .seminar-number-large {
+                font-size: 80px;
+                margin-right: 20px;
+                min-width: 70px;
+            }
+            
+            .seminar-content-text {
+                font-size: 14px;
+                padding-top: 20px;
+            }
+            
+            .seminar-content-item {
+                margin-bottom: 25px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .seminar-number-large {
+                font-size: 60px;
+                margin-right: 15px;
+                min-width: 50px;
+            }
+            
+            .seminar-content-text {
+                font-size: 13px;
+                padding-top: 15px;
+            }
+            
+            .seminar-content-item {
+                margin-bottom: 20px;
+            }
+        }
+        
         /* 利用者の声セクション */
         .user-voice {
             background: white;
@@ -1978,10 +2041,8 @@
             }
             
             .works-section-number {
-                width: 60px;
-                height: 60px;
-                font-size: 32px;
-                margin: 20px auto 15px;
+                font-size: 80px;
+                margin: 15px auto;
             }
             
             .about-works-heading {
@@ -2559,12 +2620,21 @@
                             <div class="seminar-status-badge past">満員御礼</div>
                             <div class="seminar-date">2025年7月29日（火）13:00〜15:00</div>
                             <h3 class="seminar-title-text">障害年金とこれからの暮らし</h3>
-                            <p class="seminar-description">
-                                <strong>内容：</strong><br>
-                                ①今から申請を検討している方が押さえておきたいポイント<br>
-                                ②受給している方が更新のために知っておいてほしい注意点<br>
-                                ③受け取った年金や手元にあるお金を上手に使うためのヒント
-                            </p>
+                            <div class="seminar-description">
+                                <strong>内容：</strong>
+                                <div class="seminar-content-item">
+                                    <span class="seminar-number-large">1</span>
+                                    <span class="seminar-content-text">今から申請を検討している方が押さえておきたいポイント</span>
+                                </div>
+                                <div class="seminar-content-item">
+                                    <span class="seminar-number-large">2</span>
+                                    <span class="seminar-content-text">受給している方が更新のために知っておいてほしい注意点</span>
+                                </div>
+                                <div class="seminar-content-item">
+                                    <span class="seminar-number-large">3</span>
+                                    <span class="seminar-content-text">受け取った年金や手元にあるお金を上手に使うためのヒント</span>
+                                </div>
+                            </div>
                             <div class="seminar-presenter-info">
                                 <span class="seminar-presenter">講師：弓削遵子（社会保険労務士・FP）</span>
                             </div>
