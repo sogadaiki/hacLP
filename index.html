@@ -1949,7 +1949,7 @@
             
             .contrast-images-wrapper {
                 flex-direction: column;
-                gap: 40px; /* VSバッジのサイズ分の余白 */
+                gap: 30px; /* バッジ用の余白を確保 */
                 align-items: center;
             }
             
@@ -1968,13 +1968,14 @@
             
             .vs-badge {
                 position: relative;
-                margin: -20px auto; /* ネガティブマージンで画像間隔を狭める */
+                margin: 20px auto; /* 上下に適切な余白を確保 */
                 transform: none;
                 animation: bounce 2s infinite;
                 z-index: 10; /* 画像の上に表示 */
                 width: 60px; /* モバイルでは少し小さく */
                 height: 60px;
                 font-size: 18px; /* フォントサイズも調整 */
+                flex-shrink: 0; /* バッジが縮まないようにする */
             }
             
             @keyframes bounce {
@@ -2366,11 +2367,8 @@
                         <div class="image-frame">
                             <img src="images/dishwasher-skill.jpg" alt="皿洗いが得意" class="contrast-image">
                             <div class="image-overlay">
-                                <span class="overlay-text">皿洗いが"得意"です！</span>
+                                <span class="overlay-text">効率よく量をこなす</span>
                             </div>
-                        </div>
-                        <div class="image-caption">
-                            <p class="caption-text">効率的に、スムーズに</p>
                         </div>
                     </div>
                     
@@ -2386,9 +2384,6 @@
                             <div class="image-overlay">
                                 <span class="overlay-text">丁寧に、じっくりと</span>
                             </div>
-                        </div>
-                        <div class="image-caption">
-                            <p class="caption-text">一つ一つ心を込めて</p>
                         </div>
                     </div>
                 </div>
@@ -2422,7 +2417,6 @@
                     <div class="question-image-area" data-aos="fade-left">
                         <div class="question-image-frame">
                             <img src="images/your-strength.jpg" alt="あなたの得意はどんなこと？" class="question-image">
-                            <div class="floating-question">あなたの"得意"は<br>どんなこと？</div>
                         </div>
                     </div>
                 </div>
