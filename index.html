@@ -852,6 +852,28 @@
             overflow: hidden;
         }
         
+        /* セクション番号のスタイル */
+        .works-section-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, rgb(248, 171, 48) 0%, rgb(229, 81, 189) 100%);
+            border-radius: 50%;
+            color: white;
+            font-size: 48px;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto 20px;
+            box-shadow: 0 10px 30px rgba(248, 171, 48, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
         .about-works-title-new {
             font-family: 'Caveat', cursive;
             font-size: 128px;
@@ -1955,6 +1977,13 @@
                 font-size: 60px;
             }
             
+            .works-section-number {
+                width: 60px;
+                height: 60px;
+                font-size: 32px;
+                margin: 20px auto 15px;
+            }
+            
             .about-works-heading {
                 font-size: 28px;
                 padding: 0 20px;
@@ -2378,6 +2407,7 @@
             <!-- セクションタイトル -->
             <div class="container">
                 <h1 class="about-works-title-new fade-in">About Works</h1>
+                <div class="works-section-number">1</div>
                 <h2 class="about-works-heading fade-in">天職マッチング面談</h2>
                 <p class="about-works-description fade-in">得意を一緒に言語化するから、合う仕事（天職）がわかる</p>
             </div>
