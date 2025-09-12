@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>就労支援センターHAC - 謙虚とうぬぼれのバランス</title>
     <meta name="description" content="謙虚さを忘れず、そして、時にはうぬぼれるくらい自信を持ってちょうど良い。就労支援センターHAC">
+    
+    <!-- セキュリティヘッダー -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; media-src 'self'; frame-src https://www.google.com; connect-src 'self' https:;">
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
@@ -2603,7 +2609,7 @@
                 <div class="seminar-apply-section fade-in" style="text-align: center; margin: 60px 0 40px;">
                     <h3 style="font-size: 1.8rem; font-weight: 700; color: #333; margin-bottom: 20px;">セミナーのお申し込み</h3>
                     <p style="color: #666; margin-bottom: 30px; font-size: 1.1rem;">「これから輝くあなたへの話」9月9日（火）開催</p>
-                    <a href="https://forms.gle/BjvxksbC8xXWMRRz9" target="_blank" class="seminar-main-apply-btn">
+                    <a href="https://forms.gle/BjvxksbC8xXWMRRz9" target="_blank" rel="noopener noreferrer" class="seminar-main-apply-btn">
                         セミナーに申し込む
                     </a>
                 </div>
@@ -2873,20 +2879,23 @@
                 </p>
             </div>
                 
-                <form class="contact-form fade-in" id="contactForm">
+                <form class="contact-form fade-in" id="contactForm" novalidate>
+                    <!-- CSRFトークンプレースホルダー -->
+                    <input type="hidden" name="csrf_token" id="csrfToken" value="">
+                    
                     <div class="form-group">
                         <label for="name">お名前 <span class="required">*</span></label>
-                        <input type="text" id="name" name="name" required>
+                        <input type="text" id="name" name="name" required maxlength="100" pattern="[^<>&"']+" title="特殊文字は使用できません">
                     </div>
                     
                     <div class="form-group">
                         <label for="phone">電話番号 <span class="required">*</span></label>
-                        <input type="tel" id="phone" name="phone" required>
+                        <input type="tel" id="phone" name="phone" required pattern="[0-9\-\+\(\)\s]+" maxlength="20" title="数字とハイフンのみ入力できます">
                     </div>
                     
                     <div class="form-group">
                         <label for="email">メールアドレス</label>
-                        <input type="email" id="email" name="email">
+                        <input type="email" id="email" name="email" maxlength="255" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}">
                     </div>
                     
                     <div class="form-group">
@@ -2902,7 +2911,7 @@
                     
                     <div class="form-group">
                         <label for="message">ご相談内容・ご質問 <span class="required">*</span></label>
-                        <textarea id="message" name="message" required placeholder="現在の状況や目標、ご質問など、お気軽にお聞かせください"></textarea>
+                        <textarea id="message" name="message" required maxlength="2000" placeholder="現在の状況や目標、ご質問など、お気軽にお聞かせください"></textarea>
                     </div>
                     
                     <button type="submit" class="submit-btn">無料相談を申し込む</button>
@@ -3037,26 +3046,81 @@
             }
         });
 
+        // CSRFトークン生成（簡易版）
+        function generateCSRFToken() {
+            return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        }
+        
+        // ページ読み込み時にCSRFトークンを設定
+        window.addEventListener('DOMContentLoaded', function() {
+            const csrfToken = generateCSRFToken();
+            const csrfField = document.getElementById('csrfToken');
+            if (csrfField) {
+                csrfField.value = csrfToken;
+                sessionStorage.setItem('csrfToken', csrfToken);
+            }
+        });
+        
+        // 入力値のサニタイズ
+        function sanitizeInput(input) {
+            const div = document.createElement('div');
+            div.textContent = input;
+            return div.innerHTML;
+        }
+        
         // フォーム送信処理
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // 必須項目チェック
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const situation = document.getElementById('situation').value;
-            const message = document.getElementById('message').value;
+            // CSRFトークン検証
+            const formToken = document.getElementById('csrfToken').value;
+            const sessionToken = sessionStorage.getItem('csrfToken');
             
+            if (!formToken || formToken !== sessionToken) {
+                alert('セキュリティエラー：ページをリロードしてください。');
+                location.reload();
+                return;
+            }
+            
+            // 入力値の取得とサニタイズ
+            const name = sanitizeInput(document.getElementById('name').value.trim());
+            const phone = sanitizeInput(document.getElementById('phone').value.trim());
+            const email = sanitizeInput(document.getElementById('email').value.trim());
+            const situation = sanitizeInput(document.getElementById('situation').value);
+            const message = sanitizeInput(document.getElementById('message').value.trim());
+            
+            // 必須項目チェック
             if (!name || !phone || !situation || !message) {
                 alert('必須項目をすべて入力してください。');
                 return;
             }
             
+            // 入力値の検証
+            const phoneRegex = /^[0-9\-\+\(\)\s]+$/;
+            if (!phoneRegex.test(phone)) {
+                alert('電話番号は数字とハイフンのみ入力してください。');
+                return;
+            }
+            
+            if (email) {
+                const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+                if (!emailRegex.test(email)) {
+                    alert('正しいメールアドレスを入力してください。');
+                    return;
+                }
+            }
+            
             // 成功メッセージ表示
             alert('お問い合わせありがとうございます。\n内容を確認の上、2営業日以内にご連絡いたします。');
             
+            // 新しいCSRFトークンを生成
+            const newToken = generateCSRFToken();
+            document.getElementById('csrfToken').value = newToken;
+            sessionStorage.setItem('csrfToken', newToken);
+            
             // フォームリセット
             this.reset();
+            document.getElementById('csrfToken').value = newToken;
         });
 
 
@@ -3170,7 +3234,7 @@
             <div class="modal-body">
                 <img id="modalImage" src="" alt="セミナーチラシ" class="modal-flyer-image">
                 <div class="modal-actions">
-                    <a id="modalApplyLink" href="#" target="_blank" class="modal-apply-btn">申し込みフォームへ</a>
+                    <a id="modalApplyLink" href="#" target="_blank" rel="noopener noreferrer" class="modal-apply-btn">申し込みフォームへ</a>
                 </div>
             </div>
         </div>
