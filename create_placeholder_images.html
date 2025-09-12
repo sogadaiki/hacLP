@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Works画像プレースホルダー生成</title>
+    <style>
+        body {
+            font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .image-generator {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        .canvas-wrapper {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        canvas {
+            border: 1px solid #ddd;
+            display: block;
+            margin: 10px 0;
+        }
+        button {
+            background: linear-gradient(45deg, rgb(248, 171, 48) 0%, rgb(229, 81, 189) 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .info {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid rgb(248, 171, 48);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>About Works セクション用画像プレースホルダー</h1>
+        
+        <div class="info">
+            <p><strong>使用方法：</strong></p>
+            <ol>
+                <li>以下の「画像を生成」ボタンをクリックして、プレースホルダー画像を生成します</li>
+                <li>生成された画像を右クリックして「画像を保存」を選択</li>
+                <li>以下のファイル名で images/ ディレクトリに保存してください：
+                    <ul>
+                        <li>dishwasher-skill.jpg</li>
+                        <li>handwash-contrast.jpg</li>
+                        <li>your-strength.jpg</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+
+        <div class="image-generator">
+            <!-- 画像1: 食洗機（得意の象徴） -->
+            <div class="canvas-wrapper">
+                <h3>画像1: 食洗機を使用している様子（1200×600px）</h3>
+                <canvas id="canvas1" width="1200" height="600"></canvas>
+                <button onclick="generateImage1()">画像を生成</button>
+                <p>ファイル名: dishwasher-skill.jpg</p>
+            </div>
+
+            <!-- 画像2: 手洗い（対比） -->
+            <div class="canvas-wrapper">
+                <h3>画像2: 手洗いの様子（1200×600px）</h3>
+                <canvas id="canvas2" width="1200" height="600"></canvas>
+                <button onclick="generateImage2()">画像を生成</button>
+                <p>ファイル名: handwash-contrast.jpg</p>
+            </div>
+
+            <!-- 画像3: 問いかけ -->
+            <div class="canvas-wrapper">
+                <h3>画像3: あなたの"得意"はどんなこと？（1200×600px）</h3>
+                <canvas id="canvas3" width="1200" height="600"></canvas>
+                <button onclick="generateImage3()">画像を生成</button>
+                <p>ファイル名: your-strength.jpg</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generateImage1() {
+            const canvas = document.getElementById('canvas1');
+            const ctx = canvas.getContext('2d');
+            
+            // 背景グラデーション
+            const gradient = ctx.createLinearGradient(0, 0, 1200, 600);
+            gradient.addColorStop(0, '#E8F4F8');
+            gradient.addColorStop(1, '#D1E7F0');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1200, 600);
+            
+            // 食洗機のイラスト風表現
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(300, 150, 600, 350);
+            ctx.strokeStyle = '#333333';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(300, 150, 600, 350);
+            
+            // 食洗機の扉
+            ctx.fillStyle = '#f0f0f0';
+            ctx.fillRect(320, 170, 560, 250);
+            ctx.strokeRect(320, 170, 560, 250);
+            
+            // 皿のイラスト
+            ctx.strokeStyle = '#4A90E2';
+            ctx.lineWidth = 2;
+            for (let i = 0; i < 5; i++) {
+                ctx.beginPath();
+                ctx.arc(400 + i * 80, 280, 30, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+            
+            // テキスト
+            ctx.font = 'bold 48px sans-serif';
+            ctx.fillStyle = '#333333';
+            ctx.textAlign = 'center';
+            ctx.fillText('皿洗いが"得意"です！', 600, 100);
+            
+            ctx.font = '32px sans-serif';
+            ctx.fillStyle = '#666666';
+            ctx.fillText('効率的に、スムーズに', 600, 550);
+            
+            // 装飾的な要素
+            ctx.strokeStyle = 'rgb(248, 171, 48)';
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(50, 300);
+            ctx.quadraticCurveTo(150, 250, 250, 300);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(950, 300);
+            ctx.quadraticCurveTo(1050, 350, 1150, 300);
+            ctx.stroke();
+        }
+
+        function generateImage2() {
+            const canvas = document.getElementById('canvas2');
+            const ctx = canvas.getContext('2d');
+            
+            // 背景グラデーション
+            const gradient = ctx.createLinearGradient(0, 0, 1200, 600);
+            gradient.addColorStop(0, '#FFF0E5');
+            gradient.addColorStop(1, '#FFE4D1');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1200, 600);
+            
+            // シンクのイラスト
+            ctx.fillStyle = '#e0e0e0';
+            ctx.fillRect(350, 200, 500, 250);
+            ctx.strokeStyle = '#333333';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(350, 200, 500, 250);
+            
+            // 水道蛇口
+            ctx.fillStyle = '#c0c0c0';
+            ctx.fillRect(575, 150, 50, 100);
+            ctx.strokeRect(575, 150, 50, 100);
+            
+            // 手のイラスト（簡略化）
+            ctx.fillStyle = '#FDBCB4';
+            ctx.beginPath();
+            ctx.ellipse(500, 350, 60, 80, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.ellipse(700, 350, 60, 80, 0, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // 皿
+            ctx.strokeStyle = '#E55B3C';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(600, 350, 40, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // 泡の表現
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+            for (let i = 0; i < 10; i++) {
+                ctx.beginPath();
+                ctx.arc(
+                    450 + Math.random() * 300,
+                    300 + Math.random() * 150,
+                    5 + Math.random() * 15,
+                    0, Math.PI * 2
+                );
+                ctx.fill();
+            }
+            
+            // テキスト
+            ctx.font = 'bold 48px sans-serif';
+            ctx.fillStyle = '#333333';
+            ctx.textAlign = 'center';
+            ctx.fillText('丁寧に、じっくりと', 600, 100);
+            
+            ctx.font = '32px sans-serif';
+            ctx.fillStyle = '#666666';
+            ctx.fillText('一つ一つ心を込めて', 600, 550);
+            
+            // 装飾的な要素
+            ctx.strokeStyle = 'rgb(229, 81, 189)';
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(50, 300);
+            ctx.quadraticCurveTo(150, 350, 250, 300);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(950, 300);
+            ctx.quadraticCurveTo(1050, 250, 1150, 300);
+            ctx.stroke();
+        }
+
+        function generateImage3() {
+            const canvas = document.getElementById('canvas3');
+            const ctx = canvas.getContext('2d');
+            
+            // 背景グラデーション
+            const gradient = ctx.createRadialGradient(600, 300, 0, 600, 300, 600);
+            gradient.addColorStop(0, '#FFFFFF');
+            gradient.addColorStop(0.5, '#FFF9F0');
+            gradient.addColorStop(1, '#FFE5F1');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 1200, 600);
+            
+            // 中央の大きな疑問符
+            ctx.font = 'bold 200px sans-serif';
+            ctx.fillStyle = 'rgba(248, 171, 48, 0.2)';
+            ctx.textAlign = 'center';
+            ctx.fillText('?', 600, 350);
+            
+            // メインテキスト
+            ctx.font = 'bold 56px sans-serif';
+            ctx.fillStyle = '#333333';
+            ctx.fillText('あなたの"得意"は', 600, 250);
+            ctx.fillText('どんなこと？', 600, 330);
+            
+            // サブテキスト
+            ctx.font = '28px sans-serif';
+            ctx.fillStyle = '#666666';
+            ctx.fillText('自分では気づいていない強みがきっとある', 600, 450);
+            
+            // 装飾的な星型アイコン
+            const drawStar = (x, y, size, color) => {
+                ctx.fillStyle = color;
+                ctx.beginPath();
+                for (let i = 0; i < 5; i++) {
+                    const angle = (Math.PI * 2 / 5) * i - Math.PI / 2;
+                    const innerAngle = angle + Math.PI / 5;
+                    const outerX = x + Math.cos(angle) * size;
+                    const outerY = y + Math.sin(angle) * size;
+                    const innerX = x + Math.cos(innerAngle) * (size * 0.5);
+                    const innerY = y + Math.sin(innerAngle) * (size * 0.5);
+                    
+                    if (i === 0) {
+                        ctx.moveTo(outerX, outerY);
+                    } else {
+                        ctx.lineTo(outerX, outerY);
+                    }
+                    ctx.lineTo(innerX, innerY);
+                }
+                ctx.closePath();
+                ctx.fill();
+            };
+            
+            // 複数の星を配置
+            drawStar(150, 150, 30, 'rgba(248, 171, 48, 0.6)');
+            drawStar(1050, 150, 25, 'rgba(229, 81, 189, 0.6)');
+            drawStar(200, 450, 20, 'rgba(248, 171, 48, 0.4)');
+            drawStar(1000, 450, 35, 'rgba(229, 81, 189, 0.5)');
+            
+            // 円形の装飾
+            ctx.strokeStyle = 'rgba(248, 171, 48, 0.3)';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.arc(100, 300, 50, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            ctx.strokeStyle = 'rgba(229, 81, 189, 0.3)';
+            ctx.beginPath();
+            ctx.arc(1100, 300, 40, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        // ページ読み込み時に自動生成
+        window.onload = function() {
+            generateImage1();
+            generateImage2();
+            generateImage3();
+        };
+    </script>
+</body>
+</html>
