@@ -1949,7 +1949,7 @@
             
             .contrast-images-wrapper {
                 flex-direction: column;
-                gap: 30px; /* バッジ用の余白を確保 */
+                gap: 10px; /* バッジと画像の間隔を狭める */
                 align-items: center;
             }
             
@@ -1968,7 +1968,7 @@
             
             .vs-badge {
                 position: relative;
-                margin: 20px auto; /* 上下に適切な余白を確保 */
+                margin: 10px auto; /* 上下の余白を狭める */
                 transform: none;
                 animation: bounce 2s infinite;
                 z-index: 10; /* 画像の上に表示 */
@@ -1976,6 +1976,8 @@
                 height: 60px;
                 font-size: 18px; /* フォントサイズも調整 */
                 flex-shrink: 0; /* バッジが縮まないようにする */
+                left: 50%;
+                margin-left: -30px; /* ページ中央に配置 (widthの半分) */
             }
             
             @keyframes bounce {
@@ -2356,7 +2358,7 @@
             <!-- セクションタイトル -->
             <div class="container">
                 <h1 class="about-works-title-new fade-in">About Works</h1>
-                <h2 class="about-works-subtitle fade-in">就職マッチング面談：得意に気づく⇒合う仕事・職場がわかる</h2>
+                <h2 class="about-works-subtitle fade-in">天職マッチング面談：得意を一緒に言語化するから、合う仕事（天職）がわかる</h2>
             </div>
             
             <!-- 対比効果を狙った画像配置エリア -->
