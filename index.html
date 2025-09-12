@@ -871,13 +871,27 @@
             100% { background-position: 0% 50%; }
         }
         
-        .about-works-subtitle {
-            font-size: 28px;
+        /* 新しい見出しスタイル */
+        .about-works-heading {
+            font-size: 36px;
             font-weight: 700;
             color: #333;
             text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        /* 説明文のスタイル */
+        .about-works-description {
+            font-size: 20px;
+            font-weight: 400;
+            color: #666;
+            text-align: center;
             margin-bottom: 60px;
-            line-height: 1.5;
+            line-height: 1.6;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         /* 対比画像セクション */
@@ -1941,8 +1955,14 @@
                 font-size: 60px;
             }
             
-            .about-works-subtitle {
-                font-size: 20px;
+            .about-works-heading {
+                font-size: 28px;
+                padding: 0 20px;
+                margin-bottom: 15px;
+            }
+            
+            .about-works-description {
+                font-size: 16px;
                 padding: 0 20px;
                 margin-bottom: 40px;
             }
@@ -2358,7 +2378,8 @@
             <!-- セクションタイトル -->
             <div class="container">
                 <h1 class="about-works-title-new fade-in">About Works</h1>
-                <h2 class="about-works-subtitle fade-in">天職マッチング面談：得意を一緒に言語化するから、合う仕事（天職）がわかる</h2>
+                <h2 class="about-works-heading fade-in">天職マッチング面談</h2>
+                <p class="about-works-description fade-in">得意を一緒に言語化するから、合う仕事（天職）がわかる</p>
             </div>
             
             <!-- 対比効果を狙った画像配置エリア -->
