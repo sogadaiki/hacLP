@@ -160,16 +160,22 @@
                 const messageEl = document.getElementById('message');
 
                 if (!nameEl || !phoneEl || !situationEl || !messageEl) {
-                    console.error('フォーム要素が見つかりません');
+                    console.error('フォーム要素が見つかりません:', {
+                        name: !!nameEl,
+                        phone: !!phoneEl,
+                        email: !!emailEl,
+                        situation: !!situationEl,
+                        message: !!messageEl
+                    });
                     return;
                 }
 
-                // 入力値の取得とサニタイズ
-                const name = sanitizeInput(nameEl.value.trim());
-                const phone = sanitizeInput(phoneEl.value.trim());
-                const email = emailEl ? sanitizeInput(emailEl.value.trim()) : '';
-                const situation = sanitizeInput(situationEl.value);
-                const message = sanitizeInput(messageEl.value.trim());
+                // 入力値の取得とサニタイズ（安全にアクセス）
+                const name = nameEl.value ? sanitizeInput(nameEl.value.trim()) : '';
+                const phone = phoneEl.value ? sanitizeInput(phoneEl.value.trim()) : '';
+                const email = emailEl && emailEl.value ? sanitizeInput(emailEl.value.trim()) : '';
+                const situation = situationEl.value ? sanitizeInput(situationEl.value) : '';
+                const message = messageEl.value ? sanitizeInput(messageEl.value.trim()) : '';
             
             // 必須項目チェック
             if (!name || !phone || !situation || !message) {
