@@ -223,7 +223,7 @@
             // =========================================
             // 重要: GASのデプロイURLをここに設定してください
             // =========================================
-            const GAS_URL = 'https://script.google.com/macros/s/AKfycbzAvQ7izs1wAAlBMGMJkvbBhwuW7trkHHxH9hV8FZEoOAkv6nVoqXWyOfbDhPqQCkmm/execY_URL'; // ← ここを変更
+            const GAS_URL = 'https://script.google.com/macros/s/AKfycbzAvQ7izs1wAAlBMGMJkvbBhwuW7trkHHxH9hV8FZEoOAkv6nVoqXWyOfbDhPqQCkmm/exec'; // ← ここを変更
 
             try {
                 const response = await fetch(GAS_URL, {
