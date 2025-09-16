@@ -131,9 +131,17 @@
         
         // 入力値のサニタイズ
         function sanitizeInput(input) {
-            const div = document.createElement('div');
-            div.textContent = input;
-            return div.innerHTML;
+            // 文字列でない場合はそのまま返す
+            if (typeof input !== 'string') {
+                return input;
+            }
+            // HTMLタグを除去し、危険な文字をエスケープ
+            return input
+                .replace(/[<>]/g, '') // HTMLタグを除去
+                .replace(/&/g, '&amp;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#x27;')
+                .trim(); // 前後の空白を削除
         }
         
         // フォーム送信処理
@@ -232,7 +240,7 @@
             const GAS_URL = 'https://script.google.com/macros/s/AKfycbzAvQ7izs1wAAlBMGMJkvbBhwuW7trkHHxH9hV8FZEoOAkv6nVoqXWyOfbDhPqQCkmm/exec'; // ← ここを変更
 
             try {
-                const response = await fetch(GAS_URL, {
+                await fetch(GAS_URL, {
                     method: 'POST',
                     mode: 'no-cors', // CORSエラーを回避
                     headers: {
