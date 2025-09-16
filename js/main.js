@@ -137,25 +137,39 @@
         }
         
         // フォーム送信処理
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // CSRFトークン検証
-            const formToken = document.getElementById('csrfToken').value;
-            const sessionToken = sessionStorage.getItem('csrfToken');
-            
-            if (!formToken || formToken !== sessionToken) {
-                alert('セキュリティエラー：ページをリロードしてください。');
-                location.reload();
-                return;
-            }
-            
-            // 入力値の取得とサニタイズ
-            const name = sanitizeInput(document.getElementById('name').value.trim());
-            const phone = sanitizeInput(document.getElementById('phone').value.trim());
-            const email = sanitizeInput(document.getElementById('email').value.trim());
-            const situation = sanitizeInput(document.getElementById('situation').value);
-            const message = sanitizeInput(document.getElementById('message').value.trim());
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // CSRFトークン検証
+                const formToken = document.getElementById('csrfToken').value;
+                const sessionToken = sessionStorage.getItem('csrfToken');
+
+                if (!formToken || formToken !== sessionToken) {
+                    alert('セキュリティエラー：ページをリロードしてください。');
+                    location.reload();
+                    return;
+                }
+
+                // 要素の存在確認
+                const nameEl = document.getElementById('name');
+                const phoneEl = document.getElementById('phone');
+                const emailEl = document.getElementById('email');
+                const situationEl = document.getElementById('situation');
+                const messageEl = document.getElementById('message');
+
+                if (!nameEl || !phoneEl || !situationEl || !messageEl) {
+                    console.error('フォーム要素が見つかりません');
+                    return;
+                }
+
+                // 入力値の取得とサニタイズ
+                const name = sanitizeInput(nameEl.value.trim());
+                const phone = sanitizeInput(phoneEl.value.trim());
+                const email = emailEl ? sanitizeInput(emailEl.value.trim()) : '';
+                const situation = sanitizeInput(situationEl.value);
+                const message = sanitizeInput(messageEl.value.trim());
             
             // 必須項目チェック
             if (!name || !phone || !situation || !message) {
@@ -169,7 +183,7 @@
                 alert('電話番号は数字とハイフンのみ入力してください。');
                 return;
             }
-            
+
             if (email) {
                 const emailRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
                 if (!emailRegex.test(email)) {
@@ -177,20 +191,76 @@
                     return;
                 }
             }
-            
-            // 成功メッセージ表示
-            alert('お問い合わせありがとうございます。\n内容を確認の上、2営業日以内にご連絡いたします。');
-            
-            // 新しいCSRFトークンを生成
-            const newToken = generateCSRFToken();
-            document.getElementById('csrfToken').value = newToken;
-            sessionStorage.setItem('csrfToken', newToken);
-            
-            // フォームリセット
-            this.reset();
-            document.getElementById('csrfToken').value = newToken;
-        });
 
+            // reCAPTCHA検証
+            if (typeof grecaptcha !== 'undefined') {
+                const recaptchaResponse = grecaptcha.getResponse();
+                if (!recaptchaResponse) {
+                    alert('「私はロボットではありません」にチェックを入れてください。');
+                    return;
+                }
+            }
+
+            // 送信ボタンを無効化
+            const submitBtn = this.querySelector('.submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = '送信中...';
+
+            // Google Apps Script送信処理
+            sendToGoogleAppsScript({
+                name: name,
+                phone: phone,
+                email: email,
+                situation: situation,
+                message: message,
+                recaptchaToken: typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : ''
+                }, submitBtn, this);
+            });
+        }
+
+        // Google Apps Script送信処理
+        async function sendToGoogleAppsScript(formData, submitBtn, formElement) {
+            // =========================================
+            // 重要: GASのデプロイURLをここに設定してください
+            // =========================================
+            const GAS_URL = 'https://script.google.com/macros/s/AKfycbzAvQ7izs1wAAlBMGMJkvbBhwuW7trkHHxH9hV8FZEoOAkv6nVoqXWyOfbDhPqQCkmm/execY_URL'; // ← ここを変更
+
+            try {
+                const response = await fetch(GAS_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // CORSエラーを回避
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                // no-corsモードでは実際のレスポンスは取得できないため、
+                // 送信成功と仮定して処理を続行
+                alert('お問い合わせありがとうございます。\n内容を確認の上、2営業日以内にご連絡いたします。');
+
+                // フォームリセット
+                formElement.reset();
+
+                // reCAPTCHAリセット
+                if (typeof grecaptcha !== 'undefined') {
+                    grecaptcha.reset();
+                }
+
+                // 新しいCSRFトークンを生成
+                const newToken = generateCSRFToken();
+                document.getElementById('csrfToken').value = newToken;
+                sessionStorage.setItem('csrfToken', newToken);
+
+            } catch (error) {
+                console.error('送信エラー:', error);
+                alert('送信に失敗しました。\nお手数ですが、お電話（099-298-9689）でお問い合わせください。');
+            } finally {
+                // 送信ボタンを再度有効化
+                submitBtn.disabled = false;
+                submitBtn.textContent = '無料相談を申し込む';
+            }
+        }
 
         // レスポンシブ動画対応
         function updateVideoSource() {

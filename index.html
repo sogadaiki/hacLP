@@ -6,15 +6,16 @@
     <title>就労支援センターHAC - 謙虚とうぬぼれのバランス</title>
     <meta name="description" content="謙虚さを忘れず、そして、時にはうぬぼれるくらい自信を持ってちょうど良い。就労支援センターHAC">
     
-    <!-- セキュリティヘッダー -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; media-src 'self'; frame-src https://www.google.com; connect-src 'self' https:;">
-    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    <!-- セキュリティヘッダー（reCAPTCHA対応） -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; media-src 'self'; frame-src https://www.google.com https://recaptcha.google.com; connect-src 'self' https: https://www.google.com;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+    <!-- reCAPTCHA v2 -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
@@ -196,23 +197,6 @@
                     <div class="seminars-grid">
                         <div class="seminar-card upcoming">
                             <div class="seminar-status-badge">開催予定</div>
-                            <div class="seminar-date">2025年9月9日（火）13:00〜15:00</div>
-                            <h3 class="seminar-title-text">これから輝くあなたへの話</h3>
-                            <p class="seminar-description">
-                                このセミナーでは、HACの現役スタッフ・前田剛が自身のリアルな体験談を通して、「支援される側」から「支援する側」へとステップアップするために本当に大切なことをお話しします。
-                            </p>
-                            <div class="seminar-details">
-                                <span class="seminar-location">📍 就労支援センターHAC</span>
-                                <span class="seminar-capacity">定員：20名</span>
-                            </div>
-                            <div class="seminar-presenter-info">
-                                <span class="seminar-presenter">講師：前田剛（HACスタッフ）</span>
-                            </div>
-                            <button class="seminar-apply-btn" data-seminar="september">詳細</button>
-                        </div>
-                        
-                        <div class="seminar-card upcoming">
-                            <div class="seminar-status-badge">開催予定</div>
                             <div class="seminar-date">2025年10月28日（火）13:00〜15:00</div>
                             <h3 class="seminar-title-text">その訓練"自己満足"で終わってない？</h3>
                             <p class="seminar-description">
@@ -229,11 +213,11 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- 申し込みボタン -->
                 <div class="seminar-apply-section fade-in" style="text-align: center; margin: 60px 0 40px;">
                     <h3 style="font-size: 1.8rem; font-weight: 700; color: #333; margin-bottom: 20px;">セミナーのお申し込み</h3>
-                    <p style="color: #666; margin-bottom: 30px; font-size: 1.1rem;">「これから輝くあなたへの話」9月9日（火）開催</p>
+                    <p style="color: #666; margin-bottom: 30px; font-size: 1.1rem;">「その訓練"自己満足"で終わってない？」10月28日（火）開催</p>
                     <a href="https://forms.gle/BjvxksbC8xXWMRRz9" target="_blank" rel="noopener noreferrer" class="seminar-main-apply-btn">
                         セミナーに申し込む
                     </a>
@@ -243,6 +227,26 @@
                 <div class="seminars-past fade-in">
                     <h2 class="seminars-category-title">過去のセミナー</h2>
                     <div class="seminars-grid">
+                        <div class="seminar-card past popular">
+                            <div class="seminar-status-badge past">満員御礼</div>
+                            <div class="seminar-date">2025年9月9日（火）13:00〜15:00</div>
+                            <h3 class="seminar-title-text">これから輝くあなたへの話</h3>
+                            <p class="seminar-description">
+                                このセミナーでは、HACの現役スタッフ・前田剛が自身のリアルな体験談を通して、「支援される側」から「支援する側」へとステップアップするために本当に大切なことをお話ししました。
+                            </p>
+                            <div class="seminar-details">
+                                <span class="seminar-location">📍 就労支援センターHAC</span>
+                                <span class="seminar-capacity">定員：20名</span>
+                            </div>
+                            <div class="seminar-presenter-info">
+                                <span class="seminar-presenter">講師：前田剛（HACスタッフ）</span>
+                            </div>
+                            <button class="seminar-apply-btn" data-seminar="september">詳細</button>
+                            <div class="seminar-feedback popular-badge">
+                                🔥 アンケート満足度88% - 参加者から高い評価をいただきました
+                            </div>
+                        </div>
+
                         <div class="seminar-card past popular">
                             <div class="seminar-status-badge past">満員御礼</div>
                             <div class="seminar-date">2025年7月29日（火）13:00〜15:00</div>
@@ -268,62 +272,6 @@
                             <button class="seminar-apply-btn" data-seminar="july">詳細</button>
                             <div class="seminar-feedback popular-badge">
                                 🔥 定員を超える申し込みが殺到した人気セミナー
-                            </div>
-                        </div>
-                        
-                        <div class="seminar-card past">
-                            <div class="seminar-status-badge past">開催済み</div>
-                            <div class="seminar-date">2025年7月（火）13:00〜15:00</div>
-                            <h3 class="seminar-title-text">就労支援セミナー</h3>
-                            <p class="seminar-description">
-                                <strong>内容：</strong><br>
-                                ・スケジュール表の作成とルーティンチェック<br>
-                                ・体調を整えるコツ（睡眠、食事、運動）<br>
-                                ・生活リズムを保つための実践的アドバイス<br>
-                                ・個別相談タイム
-                            </p>
-                            <div class="seminar-feedback">
-                                💬 「体調管理の具体的な方法を学べて、日々の生活に活かせています」
-                            </div>
-                        </div>
-                        
-                        <div class="seminar-card past">
-                            <div class="seminar-status-badge past">開催済み</div>
-                            <div class="seminar-date">2025年5月（火）13:00〜15:00</div>
-                            <h3 class="seminar-title-text">就労支援セミナー</h3>
-                            <p class="seminar-description">
-                                <strong>内容：</strong><br>
-                                ・職場でのコミュニケーションの取り方<br>
-                                ・報告・連絡・相談の実践練習<br>
-                                ・困った時の対処法<br>
-                                ・ロールプレイを通じた実践練習
-                            </p>
-                            <div class="seminar-feedback">
-                                💬 「実際の職場を想定した練習ができて、自信がつきました」
-                            </div>
-                        </div>
-                        
-                        <div class="seminar-card past">
-                            <div class="seminar-status-badge past">開催済み</div>
-                            <div class="seminar-date">2025年3月（火）13:00〜15:00</div>
-                            <h3 class="seminar-title-text">就労支援セミナー</h3>
-                            <p class="seminar-description">
-                                2ヶ月に1回の定期開催。履歴書・職務経歴書の書き方、面接対策など、就職活動の基礎から実践まで幅広くサポートしました。
-                            </p>
-                            <div class="seminar-feedback">
-                                💬 「個別のアドバイスがとても参考になりました」
-                            </div>
-                        </div>
-                        
-                        <div class="seminar-card past">
-                            <div class="seminar-status-badge past">開催済み</div>
-                            <div class="seminar-date">2025年1月（火）13:00〜15:00</div>
-                            <h3 class="seminar-title-text">就労支援セミナー</h3>
-                            <p class="seminar-description">
-                                新年最初のセミナー。今年の目標設定と就職活動の計画立案を中心に、参加者それぞれの状況に合わせたサポートを実施しました。
-                            </p>
-                            <div class="seminar-feedback">
-                                💬 「目標が明確になり、やる気が出ました」
                             </div>
                         </div>
                     </div>
@@ -526,7 +474,12 @@
                         <label for="message">ご相談内容・ご質問 <span class="required">*</span></label>
                         <textarea id="message" name="message" required maxlength="2000" placeholder="現在の状況や目標、ご質問など、お気軽にお聞かせください"></textarea>
                     </div>
-                    
+
+                    <!-- reCAPTCHA -->
+                    <div class="form-group" style="display: flex; justify-content: center; margin: 30px 0;">
+                        <div class="g-recaptcha" data-sitekey="6Lfk78orAAAAAJQoCGfoenaPkV-V_Ps_JwHrytyj"></div>
+                    </div>
+
                     <button type="submit" class="submit-btn">無料相談を申し込む</button>
                 </form>
         </section>
