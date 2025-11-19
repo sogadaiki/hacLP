@@ -12,7 +12,7 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=BIZ+UDPGothic:wght@400;700&family=BIZ+UDPMincho:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <!-- reCAPTCHA v2 -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
@@ -30,21 +30,21 @@
     <!-- ナビゲーションメニュー -->
     <nav class="nav-menu" id="navMenu">
         <div class="nav-menu-header">
-            <h3>NAVIGATION</h3>
+            <h3>メニュー</h3>
             <button class="nav-close-btn" id="navCloseBtn">
                 <span></span>
                 <span></span>
             </button>
         </div>
         <ul class="nav-list">
-            <li><a href="#home" class="nav-link"><span class="nav-icon">🏠</span>TOP</a></li>
-            <li><a href="#aboutworks" class="nav-link"><span class="nav-icon">⚡</span>About Works</a></li>
-            <li><a href="#seminars" class="nav-link"><span class="nav-icon">📚</span>Seminars</a></li>
-            <li><a href="#uservoice" class="nav-link"><span class="nav-icon">💬</span>User Voice</a></li>
-            <li><a href="#accessmap" class="nav-link"><span class="nav-icon">📍</span>Access Map</a></li>
-            <li><a href="#aboutservice" class="nav-link"><span class="nav-icon">💼</span>About Service</a></li>
-            <li><a href="#message" class="nav-link"><span class="nav-icon">💌</span>Message</a></li>
-            <li><a href="#contact" class="nav-link"><span class="nav-icon">📞</span>Contact</a></li>
+            <li><a href="#home" class="nav-link"><span class="nav-icon">🏠</span>トップ</a></li>
+            <li><a href="#aboutworks" class="nav-link"><span class="nav-icon">⚡</span>HACの支援について</a></li>
+            <li><a href="#seminars" class="nav-link"><span class="nav-icon">📚</span>セミナー</a></li>
+            <li><a href="#uservoice" class="nav-link"><span class="nav-icon">💬</span>利用者の声</a></li>
+            <li><a href="#accessmap" class="nav-link"><span class="nav-icon">📍</span>アクセスマップ</a></li>
+            <li><a href="#aboutservice" class="nav-link"><span class="nav-icon">💼</span>サービス概要</a></li>
+            <li><a href="#message" class="nav-link"><span class="nav-icon">💌</span>メッセージ</a></li>
+            <li><a href="#contact" class="nav-link"><span class="nav-icon">📞</span>お問い合わせ</a></li>
         </ul>
     </nav>
 
@@ -70,7 +70,10 @@
 <section id="aboutworks" class="about-works-new">
             <!-- セクションタイトル -->
             <div class="container">
-                <h1 class="about-works-title-new fade-in">About Works</h1>
+                <h1 class="about-works-title-new fade-in">
+                    About Works
+                    <span class="title-japanese-sub">HACの支援について</span>
+                </h1>
                 <div class="works-section-number">1</div>
                 <h2 class="about-works-heading fade-in">天職マッチング面談</h2>
                 <p class="about-works-description fade-in">得意を一緒に言語化するから、合う仕事（天職）がわかる</p>
@@ -188,7 +191,10 @@
 
 <section id="seminars" class="seminars-section">
             <div class="container">
-                <h1 class="seminars-title fade-in">Seminars</h1>
+                <h1 class="seminars-title fade-in">
+                    Seminars
+                    <span class="title-japanese-sub">セミナー</span>
+                </h1>
                 <p class="seminars-subtitle fade-in">利用者様のために定期的に開催している各種セミナー・イベント情報</p>
                 
                 <!-- 開催予定のセミナー -->
@@ -280,7 +286,10 @@
 <section id="uservoice" class="user-voice">
             <!-- タイトル -->
             <div class="container">
-                <h1 class="user-voice-title fade-in">User Voice</h1>
+                <h1 class="user-voice-title fade-in">
+                    User Voice
+                    <span class="title-japanese-sub">利用者の声</span>
+                </h1>
             </div>
 
             <!-- 利用者の声コンテンツ -->
@@ -347,7 +356,10 @@
             
             <div class="container">
                 <div class="section-wrapper">
-                    <h1 class="access-map-title fade-in">Access Map</h1>
+                    <h1 class="access-map-title fade-in">
+                        Access Map
+                        <span class="title-japanese-sub">アクセスマップ</span>
+                    </h1>
                 </div>
                 <div class="access-map-container fade-in">
                     <div class="access-map-card">
@@ -379,7 +391,10 @@
 
             <!-- タイトル -->
             <div class="container">
-                <h1 class="about-service-title fade-in">About Service</h1>
+                <h1 class="about-service-title fade-in">
+                    About Service
+                    <span class="title-japanese-sub">サービス概要</span>
+                </h1>
             </div>
 
             <!-- コンテンツ（1段落構成） -->
@@ -409,20 +424,23 @@
 <section id="message" class="message-section">
             <div class="container">
                 <!-- タイトル -->
-                <h1 class="message-section-title fade-in">Message</h1>
-                
+                <h1 class="message-section-title fade-in">
+                    Message
+                    <span class="title-japanese-sub">メッセージ</span>
+                </h1>
+
                 <!-- メッセージカード -->
                 <div class="message-card-container fade-in">
                     <div class="message-card">
                         <!-- 代表者写真 -->
                         <div class="message-photo-wrapper">
-                            <img src="images/message.jpg" class="message-photo" alt="施設長">
+                            <img src="images/message.jpg" class="message-photo" alt="代表">
                         </div>
                         
                         <!-- メッセージテキスト -->
                         <div class="message-text-wrapper">
                             <div class="message-header">
-                                <h3>施設長からのメッセージ</h3>
+                                <h3>代表からのメッセージ</h3>
                             </div>
                             <div class="message-content">
                                 <p>
@@ -439,7 +457,7 @@
                                 <P>最後に、わたしは障害の有無で何かを語ることをしません。時に冷たいと言われることもありますが、「すべては人」この信念のもと、あなたと向き合いたいと思っています。それでは、いつでもお待ちしております。
                                 </P>
                                 <div class="message-signature">
-                                    <p><strong>就労支援センターHAC　施設長</strong></p>
+                                    <p><strong>就労支援センターHAC　代表</strong></p>
                                 </div>
                             </div>
                         </div>
@@ -452,7 +470,10 @@
             
             <!-- タイトル -->
             <div class="container">
-                <h1 class="contact-title fade-in">Contact</h1>
+                <h1 class="contact-title fade-in">
+                    Contact
+                    <span class="title-japanese-sub">お問い合わせ</span>
+                </h1>
                 <p style="text-align: center; margin-bottom: 3rem; color: #666; font-size: 1.2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
                     まずはお気軽にご相談ください。専門スタッフが対応いたします。
                 </p>
