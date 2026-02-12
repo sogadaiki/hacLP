@@ -6,16 +6,14 @@
     <title>就労支援センターHAC - 謙虚とうぬぼれのバランス</title>
     <meta name="description" content="謙虚さを忘れず、そして、時にはうぬぼれるくらい自信を持ってちょうど良い。就労支援センターHAC">
     
-    <!-- セキュリティヘッダー（reCAPTCHA対応） -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; media-src 'self'; frame-src https://www.google.com https://recaptcha.google.com; connect-src 'self' https: https://www.google.com;">
+    <!-- セキュリティヘッダー -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; media-src 'self'; frame-src https://www.google.com https://docs.google.com; connect-src 'self' https: https://docs.google.com;">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=BIZ+UDPGothic:wght@400;700&family=BIZ+UDPMincho:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <!-- reCAPTCHA v2 -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
@@ -480,27 +478,25 @@
             </div>
                 
                 <form class="contact-form fade-in" id="contactForm" novalidate>
-                    <!-- CSRFトークンプレースホルダー -->
-                    <input type="hidden" name="csrf_token" id="csrfToken" value="">
                     
                     <div class="form-group">
                         <label for="name">お名前 <span class="required">*</span></label>
-                        <input type="text" id="name" name="name" required maxlength="100" pattern="[^<>&"']+" title="特殊文字は使用できません">
+                        <input type="text" id="name" name="entry.1960058066" required maxlength="100" pattern="[^<>&quot;']+" title="特殊文字は使用できません">
                     </div>
                     
                     <div class="form-group">
                         <label for="phone">電話番号 <span class="required">*</span></label>
-                        <input type="tel" id="phone" name="phone" required pattern="[0-9\-\+\(\)\s]+" maxlength="20" title="数字とハイフンのみ入力できます">
+                        <input type="tel" id="phone" name="entry.102428179" required pattern="[0-9\-\+\(\)\s]+" maxlength="20" title="数字とハイフンのみ入力できます">
                     </div>
                     
                     <div class="form-group">
                         <label for="email">メールアドレス</label>
-                        <input type="email" id="email" name="email" maxlength="255" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}">
+                        <input type="email" id="email" name="entry.227018114" maxlength="255" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}">
                     </div>
                     
                     <div class="form-group">
                         <label for="situation">現在の状況 <span class="required">*</span></label>
-                        <select id="situation" name="situation" required>
+                        <select id="situation" name="entry.996598632" required>
                             <option value="" disabled selected>選択してください</option>
                             <option value="就労継続支援事業所利用中">就労継続支援事業所利用中</option>
                             <option value="個人で就職活動中">個人で就職活動中</option>
@@ -511,12 +507,7 @@
                     
                     <div class="form-group">
                         <label for="message">ご相談内容・ご質問 <span class="required">*</span></label>
-                        <textarea id="message" name="message" required maxlength="2000" placeholder="現在の状況や目標、ご質問など、お気軽にお聞かせください"></textarea>
-                    </div>
-
-                    <!-- reCAPTCHA -->
-                    <div class="form-group" style="display: flex; justify-content: center; margin: 30px 0;">
-                        <div class="g-recaptcha" data-sitekey="6Lfk78orAAAAAJQoCGfoenaPkV-V_Ps_JwHrytyj"></div>
+                        <textarea id="message" name="entry.454273799" required maxlength="2000" placeholder="現在の状況や目標、ご質問など、お気軽にお聞かせください"></textarea>
                     </div>
 
                     <button type="submit" class="submit-btn">無料相談を申し込む</button>
